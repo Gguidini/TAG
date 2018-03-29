@@ -43,14 +43,20 @@ void listSorted(vector<int>* G){
     }
 }
 
-int main(){
+int main(int argc, char* argv[]){
     // limpa estruturas do grafo na lib
     initGraph();
 	// Variavel para ler o nome do arquivo que contem o grafo
 	string file;
-	cout << "Input gml file name: ";
-	// Le o nome do arquivo
-	cin >> file;
+    if(argc == 2){
+        file = string(argv[1]);
+    }
+    else{
+        cout << "Input gml file name: ";
+	    // Le o nome do arquivo
+	    cin >> file;
+    }
+
 	//Tenta ler o arquivo e caso nao exista, encerra o programa
 	if (!read(file + ".gml")){
 		cout << "System finished" << endl;
