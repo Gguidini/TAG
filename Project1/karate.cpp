@@ -10,9 +10,36 @@ void showGraph(vector<int>* G){
     for(int i = 1; i <= l; i++){
         cout << getID(i) << "\tConnects with: ";
         for(auto e: G[i]){
-            cout << "-> " << getID(e) << " ";
+            printf("-> %*s ", 2, getID(e).c_str());
         }
         printf("\n");
+    }
+}
+
+bool cmp(const pair<int, int>&i, const pair<int, int>&j){
+    if(i.second == j.second){
+        return i.first < j.first;
+    }
+
+    return i.second > j.second;
+}
+
+void listSorted(vector<int>* G){
+    int l = graphSize();
+    // vetor para o indice e numero de conexoes
+    vector<pair<int,int>> arr(l);
+
+    for(int i = 1; i <= l; i++){
+        arr[i-1] = make_pair(i, G[i].size());
+    }
+
+    // sorting array by nunber of connections
+    sort(arr.begin(), arr.end(), cmp);
+
+    printf("\n\nNodes em ordem DECRESCENTE de conexoes\n");
+    printf("Node\tNumero de Conexoes\n");
+    for(int i = 0; i < l; i++){
+        cout << getID(arr[i].first) << "\t" << arr[i].second << endl;
     }
 }
 
@@ -33,4 +60,5 @@ int main(){
     // referencia para o grafo da lib
     vector<int>* G = getGraph();
     showGraph(G);
+    listSorted(G);
 }
