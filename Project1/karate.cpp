@@ -1,8 +1,10 @@
 #include <bits/stdc++.h>
 #include "gmlParser.h"
+#include "svg.h"
 
 using namespace std;
 
+// mostra a estrutura do grafo no terminal -- debugging
 void showGraph(vector<int>* G){
     int l = graphSize();
     printf("O grafo contém %d nodes\n", l);
@@ -16,6 +18,7 @@ void showGraph(vector<int>* G){
     }
 }
 
+// ordenar nodes por maior numero de conexoes
 bool cmp(const pair<int, int>&i, const pair<int, int>&j){
     if(i.second == j.second){
         return i.first < j.first;
@@ -24,6 +27,7 @@ bool cmp(const pair<int, int>&i, const pair<int, int>&j){
     return i.second > j.second;
 }
 
+// lista nodes e numero de coonexoes em ordem decrescente
 void listSorted(vector<int>* G){
     int l = graphSize();
     // vetor para o indice e numero de conexoes
@@ -65,6 +69,9 @@ int main(int argc, char* argv[]){
 
     // referencia para o grafo da lib
     vector<int>* G = getGraph();
-    showGraph(G);
+    
+    // sorts nodes by connections
     listSorted(G);
+    // generates view of graph
+    printGraph(G);
 }
