@@ -7,6 +7,7 @@ using namespace std;
 // graph
 vector<int> G[1000000];
 vector<int> IN(1000000);
+stack<int> P;
 int size;
 
 
@@ -56,8 +57,40 @@ string topSort(){
     return out.substr(0, out.size()-1); // pop back remove a última vírgula
 }
 
+void dfs(int pos, bool *visited){
+    visited[pos] = true;
+     //cout << "aqui2" << endl;
+
+    for (auto v : G[pos]) // percorre todos os filhos, se nao visitados chama a função novamente
+        if(!visited[v])
+            dfs(v, visited);
+    
+    P.push(pos); // empilha os nós
+}
+
+// topological sort using a dfs
+string dfsSort(){
+    bool visited[size]; // checar nós visitados
+    memset(visited, false , sizeof(visited)); // setar valor inicial como 0
+    for(int i = 0; i < size; i++)
+        if (!visited[i]) 
+            dfs(i, visited);
+    
+
+    string result;
+    int resp;
+    while (!P.empty()){
+        resp = P.top();
+        result += to_string(resp) + ",";
+        P.pop();
+    }
+    return result.substr(0, result.size() - 1);
+    
+}
+
 int main(){
-    vector<string> files = {"top_small.txt", "top_med.txt", "top_large.txt", "top_huge.txt"};
+    // {"top_small.txt", "top_med.txt", "top_large.txt", "top_huge.txt"};
+    vector<string> files = {"top_small.txt", "top_med.txt"};
     for(auto f : files){
         cout << "Processando arquivo " << f << endl;
         string path = "top_datasets/" + f;
@@ -65,10 +98,15 @@ int main(){
         clock_t t0 = clock();
         string order = topSort();
         clock_t t1 = clock();
-        int delta = t1-t0;
-        cout << "SORTED ORDER\n" << order << endl;
-        printf("CLOCK CICLES: %lf\n", delta); 
-        cout << t0 << " " << t1 << endl;
+        cout << "SORTED ORDER - TOPSORT ALGORITHM\n" << order << endl;
+        cout << "CLOCK CICLES - TOPSORT ALGORITHM: " << t1-t0;
+        cout << " t0 = " << t0 << " " << "t1 = " << t1 << endl;
+        t0 = clock();
+        order = dfsSort();
+        t1 = clock();
+        cout << "SORTED ORDER - DFSSORT ALGORITHM\n" << order << endl;
+        cout << "CLOCK CICLES - DFSSORT ALGORITHM: " << t1 - t0;
+        cout << " t0 = " << t0 << " " << "t1 = " << t1 << endl;
     }
 }
 
