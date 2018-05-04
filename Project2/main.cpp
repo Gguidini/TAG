@@ -90,23 +90,27 @@ string dfsSort(){
 
 int main(){
     // {"top_small.txt", "top_med.txt", "top_large.txt", "top_huge.txt"};
-    vector<string> files = {"top_small.txt", "top_med.txt"};
-    for(auto f : files){
+    // vector<string> files = {"top_small.txt", "top_med.txt"};
+    vector<string> files = {"top_small.txt", "top_med.txt", "top_large.txt", "top_huge.txt"};
+    for (auto f : files){
         cout << "Processando arquivo " << f << endl;
         string path = "top_datasets/" + f;
         readGraph(path);
         clock_t t0 = clock();
         string order = topSort();
         clock_t t1 = clock();
-        cout << "SORTED ORDER - TOPSORT ALGORITHM\n" << order << endl;
-        cout << "CLOCK CICLES - TOPSORT ALGORITHM: " << t1-t0;
-        cout << " t0 = " << t0 << " " << "t1 = " << t1 << endl;
+        cout << "+-------------------------------------------" << endl;
+        cout << "SORTED ORDER - " << f << " - TOPSORT ALGORITHM\n" << order << endl;
+        cout << "CLOCK CICLES - " << f << " - TOPSORT ALGORITHM: " << t1 - t0;
+        cout << " \t\tt0 = " << t0 << " " << "t1 = " << t1 << endl;
+        cout << "+-------------------------------------------" << endl;
         t0 = clock();
         order = dfsSort();
         t1 = clock();
-        cout << "SORTED ORDER - DFSSORT ALGORITHM\n" << order << endl;
-        cout << "CLOCK CICLES - DFSSORT ALGORITHM: " << t1 - t0;
-        cout << " t0 = " << t0 << " " << "t1 = " << t1 << endl;
+        cout << "SORTED ORDER - " << f << " - DFSSORT ALGORITHM\n" << order << endl;
+        cout << "CLOCK CICLES - " << f << " - DFSSORT ALGORITHM: " << t1 - t0;
+        cout << " \t\tt0 = " << t0 << " " << "t1 = " << t1 << "\n";
+        cout << "+-------------------------------------------" << "\n\n\n";
     }
 }
 
