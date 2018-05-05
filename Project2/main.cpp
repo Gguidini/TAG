@@ -1,13 +1,17 @@
 // Created by Vitor F Dullens 
 // and Giovanni M Guidini 16/0122660
 #include <bits/stdc++.h>
+#include "gnuplot-cpp/gnuplot_i.hpp"
 
 using namespace std;
 
 // graph
 vector<int> G[1000000];
+// lista de incidencia
 vector<int> IN(1000000);
+// pilha com resutados dfsSort
 stack<int> P;
+// tamanho do grafo
 int size;
 
 
@@ -88,14 +92,21 @@ string dfsSort(){
     
 }
 
+void gnuPlot() {
+    
+}
+
 int main(){
-    // {"top_small.txt", "top_med.txt", "top_large.txt", "top_huge.txt"};
-    // vector<string> files = {"top_small.txt", "top_med.txt"};
-    vector<string> files = {"top_small.txt", "top_med.txt", "top_large.txt", "top_huge.txt"};
+    ofstream data("data.txt", ios:: app);
+    data.close();
+    data.open("data.txt", ios:: trunc);
+    vector<string> files = {"top_small.txt", "top_med.txt"};
+    //vector<string> files = {"top_small.txt", "top_med.txt", "top_large.txt", "top_huge.txt"};
     for (auto f : files){
         cout << "Processando arquivo " << f << endl;
         string path = "top_datasets/" + f;
         readGraph(path);
+        data << size << endl;
         clock_t t0 = clock();
         string order = topSort();
         clock_t t1 = clock();
@@ -104,6 +115,7 @@ int main(){
         cout << "CLOCK CICLES - " << f << " - TOPSORT ALGORITHM: " << t1 - t0;
         cout << " \t\tt0 = " << t0 << " " << "t1 = " << t1 << endl;
         cout << "+-------------------------------------------" << endl;
+        data << "TOP: " << t1-t0 << endl;
         t0 = clock();
         order = dfsSort();
         t1 = clock();
@@ -111,6 +123,9 @@ int main(){
         cout << "CLOCK CICLES - " << f << " - DFSSORT ALGORITHM: " << t1 - t0;
         cout << " \t\tt0 = " << t0 << " " << "t1 = " << t1 << "\n";
         cout << "+-------------------------------------------" << "\n\n\n";
+        data << "DFS: " << t1-t0 << endl;
     }
+    data.close();
+    gnuPlot();
 }
 
