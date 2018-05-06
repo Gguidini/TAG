@@ -134,7 +134,7 @@ void header(){
     printf("################################################\n");
     printf("#       Projeto 2 - TAG - Unb - 2018/1         #\n");
     printf("################################################\n");
-    printf("#      Aluno: Vitor F Dullens - 16/???????     #\n");
+    printf("#      Aluno: Vitor F Dullens - 16/0148260     #\n");
     printf("#   Aluno: Giovanni M Guidini - 16/0122660     #\n");
     printf("################################################\n");
     printf("#               Algorithms Used                #\n");
