@@ -15,7 +15,7 @@ stack<int> P;
 int size;
 
 // making it working in bloddy windows
-#ifdef __WIN32
+#if defined(_WIN32) || defined(WIN32) || defined(__WIN32__)
     #define SLASH "\\"
 #else
     #define SLASH "/"
@@ -98,10 +98,37 @@ string dfsSort(){
     
 }
 
-void gnuPlot() {
-    
+void gnuPlot(vector<double> Kahn, vector<double> Dfs, vector<double> sizes){
+    try{
+        Gnuplot g1("lines");
+        g1.set_xlabel("Size of Graphs");
+        g1.set_ylabel("Time in seconds");
+        g1.set_grid();
+        g1.set_style("lines").plot_xy(sizes,Kahn,"Kahn's Algorithm");
+        g1.set_style("lines").plot_xy(sizes, Dfs, "DFS Algorithm");
+        g1.showonscreen(); // window output
+        getchar();
+
+    }
+    catch (GnuplotException &ge){
+        cout << ge.what() << endl;
+    }
 }
 
+// Displays results of iteration
+void showResults(string kahnOrder, string dfsOrder, int kahnClock, int dfsClock, bool showOrder = false){
+        cout << "+----------- TOPOLOGICAL SORT USING KAHN ---------------------" << endl;
+        if(showOrder)
+            cout << "SORTED ORDER - KHANSORT ALGORITHM\n" << kahnOrder << endl;
+        cout << "CLOCK CICLES - " << kahnClock << endl;
+        cout << "TIME - " << (double) kahnClock/CLOCKS_PER_SEC << "s" <<endl;
+        cout << "+----------- TOPOLOGICAL SORT USING DFS ----------------------" << endl;
+        if(showOrder)
+            cout << "SORTED ORDER -  DFSSORT ALGORITHM\n" << dfsOrder << endl;
+        cout << "CLOCK CICLES - " << dfsClock << endl;
+        cout << "TIME - " << (double) dfsClock/CLOCKS_PER_SEC << "s"<< endl;
+        cout << "+-------------------------------------------" << "\n\n\n";
+}
 // TODO: Dullens, add sua matricula, por favor.
 void header(){
     printf("################################################\n");
@@ -122,15 +149,17 @@ void header(){
     printf("# at the end of execution, is a valid          #\n");
     printf("# topological sort. O(V+E).                    #\n");
     printf("################################################\n");
+    printf("\n");
 }
 
 int main(){
     header();
-    // save execution times
+    // save execution times to create comprehensive study
     ofstream data;
-    data.open("data.txt", ios::trunc);
+    data.open("data.txt", ios::app);
     vector<double> timesIncidenceSort(4);
     vector<double> timesDFSSort(4);
+    vector<double> sizes(4);
     // the 4 graphs
     vector<string> files = {"top_small.txt", "top_med.txt", "top_large.txt", "top_huge.txt"};
     // execute main loop for all graphs
@@ -139,30 +168,31 @@ int main(){
         string path = "top_datasets" + (SLASH + f);
         // reads graph + creates incidency list
         readGraph(path);
-        data << size << endl;
+        sizes.push_back(size);
+
         clock_t t0 = clock();
         // first sorting algorithm
-        string order = kahnSort();
+        string kahn = kahnSort();
         clock_t t1 = clock();
-        timesIncidenceSort.push_back((double) (t1-t0)); // saves time
-        cout << "+----------- TOPOLOGICAL SORT USING INCIDENCY LIST -----------" << endl;
-        // cout << "SORTED ORDER - " << f << " - kahnSort ALGORITHM\n" << order << endl;
-        cout << "CLOCK CICLES - " << (int) (t1-t0) << endl;
-        cout << "TIME - " << (double) (t1-t0)/CLOCKS_PER_SEC << "s" <<endl;
-        cout << "+----------- TOPOLOGICAL SORT USING DFS ----------------------" << endl;
-        data << "TOP: " << t1-t0 << endl;
+        timesIncidenceSort.push_back((double) (t1-t0)/CLOCKS_PER_SEC); // saves time
+        int kahnClock = t1-t0;
+        
         t0 = clock();
         // second sorting algorithm
-        order = dfsSort();
+        string dfs = dfsSort();
         t1 = clock();
-        timesIncidenceSort.push_back((double) (t1-t0)); // saves time
-        // cout << "SORTED ORDER - " << f << " - DFSSORT ALGORITHM\n" << order << endl;
-        cout << "CLOCK CICLES - " << (int) (t1-t0) << endl;
-        cout << "TIME - " << (double) (t1-t0)/CLOCKS_PER_SEC << "s"<< endl;
-        cout << "+-------------------------------------------" << "\n\n\n";
-        data << "DFS: " << t1-t0 << endl;
+        timesDFSSort.push_back((double) (t1-t0)/CLOCKS_PER_SEC); // saves time
+        int dfsClock = t1-t0;
+        
+        showResults(kahn, dfs, kahnClock, dfsClock); // show results on screen, whitout showing order.
+        // showResults(kahn, dfs, kahnClock, dfsClock, true); // uncomment if want to see results.
+
+        // Saving data for further analysis
+        // data << size << endl;  // size of run
+        // data << "TOP: " << kahnClock << endl;
+        // data << "DFS: " << dfsClock << endl;
     }
     data.close();
-    gnuPlot();
+    gnuPlot(timesIncidenceSort, timesDFSSort, sizes);
 }
 
