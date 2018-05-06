@@ -14,6 +14,12 @@ stack<int> P;
 // tamanho do grafo
 int size;
 
+// making it working in bloddy windows
+#ifdef __WIN32
+    #define SLASH "\\"
+#else
+    #define SLASH "/"
+#endif
 
 void readGraph(string file){
     ifstream fd (file);
@@ -34,8 +40,8 @@ void readGraph(string file){
     }
 }
 
-// topological sort using incindency list of nodes
-string topSort(){
+// topological sort using Kahn's algorithm
+string kahnSort(){
     queue<int> Q;
     string out = "";
     // initial nodes
@@ -96,32 +102,63 @@ void gnuPlot() {
     
 }
 
+// TODO: Dullens, add sua matricula, por favor.
+void header(){
+    printf("################################################\n");
+    printf("#       Projeto 2 - TAG - Unb - 2018/1         #\n");
+    printf("################################################\n");
+    printf("#      Aluno: Vitor F Dullens - 16/???????     #\n");
+    printf("#   Aluno: Giovanni M Guidini - 16/0122660     #\n");
+    printf("################################################\n");
+    printf("#               Algorithms Used                #\n");
+    printf("# 1) Kahn's Algorithm                          #\n");
+    printf("# Create topological sort from incoming edges  #\n");
+    printf("# of nodes. O(V+E) + time to create list of    #\n");
+    printf("# incoming edges (done when reading).          #\n");
+    printf("#                                              #\n");
+    printf("# 2) Topological Sort with DFS                 #\n");
+    printf("# Modified DFS to generate topological sort by #\n");
+    printf("# adding finished nodes in a stack. The stack, #\n");
+    printf("# at the end of execution, is a valid          #\n");
+    printf("# topological sort. O(V+E).                    #\n");
+    printf("################################################\n");
+}
+
 int main(){
-    ofstream data("data.txt", ios:: app);
-    data.close();
-    data.open("data.txt", ios:: trunc);
-    vector<string> files = {"top_small.txt", "top_med.txt"};
-    //vector<string> files = {"top_small.txt", "top_med.txt", "top_large.txt", "top_huge.txt"};
+    header();
+    // save execution times
+    ofstream data;
+    data.open("data.txt", ios::trunc);
+    vector<double> timesIncidenceSort(4);
+    vector<double> timesDFSSort(4);
+    // the 4 graphs
+    vector<string> files = {"top_small.txt", "top_med.txt", "top_large.txt", "top_huge.txt"};
+    // execute main loop for all graphs
     for (auto f : files){
         cout << "Processando arquivo " << f << endl;
-        string path = "top_datasets/" + f;
+        string path = "top_datasets" + (SLASH + f);
+        // reads graph + creates incidency list
         readGraph(path);
         data << size << endl;
         clock_t t0 = clock();
-        string order = topSort();
+        // first sorting algorithm
+        string order = kahnSort();
         clock_t t1 = clock();
-        cout << "+-------------------------------------------" << endl;
-        cout << "SORTED ORDER - " << f << " - TOPSORT ALGORITHM\n" << order << endl;
-        cout << "CLOCK CICLES - " << f << " - TOPSORT ALGORITHM: " << t1 - t0;
-        cout << " \t\tt0 = " << t0 << " " << "t1 = " << t1 << endl;
-        cout << "+-------------------------------------------" << endl;
+        timesIncidenceSort.push_back((double) (t1-t0)); // saves time
+        cout << "+----------- TOPOLOGICAL SORT USING INCIDENCY LIST -----------" << endl;
+        // cout << "SORTED ORDER - " << f << " - kahnSort ALGORITHM\n" << order << endl;
+        cout << "CLOCK CICLES - " << (int) (t1-t0) << endl;
+        cout << "TIME - " << (double) (t1-t0)/CLOCKS_PER_SEC << "s" <<endl;
+        cout << "+----------- TOPOLOGICAL SORT USING DFS ----------------------" << endl;
         data << "TOP: " << t1-t0 << endl;
         t0 = clock();
+        // second sorting algorithm
         order = dfsSort();
         t1 = clock();
-        cout << "SORTED ORDER - " << f << " - DFSSORT ALGORITHM\n" << order << endl;
-        cout << "CLOCK CICLES - " << f << " - DFSSORT ALGORITHM: " << t1 - t0;
-        cout << " \t\tt0 = " << t0 << " " << "t1 = " << t1 << "\n";
+        timesIncidenceSort.push_back((double) (t1-t0)); // saves time
+        // cout << "SORTED ORDER - " << f << " - DFSSORT ALGORITHM\n" << order << endl;
+        cout << "CLOCK CICLES - " << (int) (t1-t0) << endl;
+        cout << "TIME - " << (double) (t1-t0)/CLOCKS_PER_SEC << "s"<< endl;
         cout << "+-------------------------------------------" << "\n\n\n";
         data << "DFS: " << t1-t0 << endl;
     }
