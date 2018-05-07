@@ -1,4 +1,4 @@
-// Created by Vitor F Dullens 
+// Created by Vitor F Dullens 16/0148260
 // and Giovanni M Guidini 16/0122660
 #include <bits/stdc++.h>
 #include "gnuplot-cpp/gnuplot_i.hpp"
@@ -69,8 +69,7 @@ string kahnSort(){
 
 void dfs(int pos, bool *visited){
     visited[pos] = true;
-     //cout << "aqui2" << endl;
-
+    
     for (auto v : G[pos]) // percorre todos os filhos, se nao visitados chama a função novamente
         if(!visited[v])
             dfs(v, visited);
@@ -94,7 +93,7 @@ string dfsSort(){
         result += to_string(resp) + ",";
         P.pop();
     }
-    return result.substr(0, result.size() - 1);
+    return result.substr(0, result.size() - 1); // pop back remove a última vírgula
     
 }
 
@@ -107,6 +106,7 @@ void gnuPlot(vector<double> Kahn, vector<double> Dfs, vector<double> sizes){
         g1.set_style("lines").plot_xy(sizes,Kahn,"Kahn's Algorithm");
         g1.set_style("lines").plot_xy(sizes, Dfs, "DFS Algorithm");
         g1.showonscreen(); // window output
+        cout << "                press ENTER to continue ... " << endl;
         getchar();
 
     }
@@ -138,18 +138,23 @@ void header(){
     printf("#   Aluno: Giovanni M Guidini - 16/0122660     #\n");
     printf("################################################\n");
     printf("#               Algorithms Used                #\n");
-    printf("# 1) Kahn's Algorithm                          #\n");
+    printf("# 1) Kahn's Algorithm:                         #\n");
     printf("# Create topological sort from incoming edges  #\n");
     printf("# of nodes. O(V+E) + time to create list of    #\n");
     printf("# incoming edges (done when reading).          #\n");
     printf("#                                              #\n");
-    printf("# 2) Topological Sort with DFS                 #\n");
+    printf("# 2) Topological Sort with DFS:                #\n");
     printf("# Modified DFS to generate topological sort by #\n");
     printf("# adding finished nodes in a stack. The stack, #\n");
     printf("# at the end of execution, is a valid          #\n");
-    printf("# topological sort. O(V+E).                    #\n");
+    printf("# topological sort. O(V+E).  With that been    #\n");
+    printf("# said this algorithm is more recommended for  #\n");
+    printf("# this exercise, because in almost all the     #\n");
+    printf("# situations it performs better.               #\n");                            
     printf("################################################\n");
     printf("\n");
+    cout << "                press ENTER to continue ... " << endl;
+    getchar();
 }
 
 int main(){
@@ -157,6 +162,7 @@ int main(){
     // save execution times to create comprehensive study
     ofstream data;
     data.open("data.txt", ios::app);
+
     vector<double> timesIncidenceSort(4);
     vector<double> timesDFSSort(4);
     vector<double> sizes(4);
@@ -187,10 +193,10 @@ int main(){
         showResults(kahn, dfs, kahnClock, dfsClock); // show results on screen, whitout showing order.
         // showResults(kahn, dfs, kahnClock, dfsClock, true); // uncomment if want to see results.
 
-        // Saving data for further analysis
-        // data << size << endl;  // size of run
-        // data << "TOP: " << kahnClock << endl;
-        // data << "DFS: " << dfsClock << endl;
+        //Saving data for further analysis
+        data << size << endl;  // size of run
+        data << "TOP: " << kahnClock << endl;
+        data << "DFS: " << dfsClock << endl;
     }
     data.close();
     gnuPlot(timesIncidenceSort, timesDFSSort, sizes);
