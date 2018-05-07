@@ -160,9 +160,8 @@ void header(){
 int main(){
     header();
     // save execution times to create comprehensive study
-    ofstream data;
-    data.open("data.txt", ios::app);
-
+    // ofstream data;
+    // data.open("data.txt", ios::app);
     vector<double> timesIncidenceSort(4);
     vector<double> timesDFSSort(4);
     vector<double> sizes(4);
@@ -194,11 +193,11 @@ int main(){
         // showResults(kahn, dfs, kahnClock, dfsClock, true); // uncomment if want to see results.
 
         //Saving data for further analysis
-        data << size << endl;  // size of run
-        data << "TOP: " << kahnClock << endl;
-        data << "DFS: " << dfsClock << endl;
+        //data << size << endl;  // size of run
+        //data << "TOP: " << kahnClock << endl;
+        //data << "DFS: " << dfsClock << endl;
     }
-    data.close();
+    // data.close();
     gnuPlot(timesIncidenceSort, timesDFSSort, sizes);
 }
 
