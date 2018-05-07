@@ -189,8 +189,8 @@ int main(){
         timesDFSSort.push_back((double) (t1-t0)/CLOCKS_PER_SEC); // saves time
         int dfsClock = t1-t0;
         
-        showResults(kahn, dfs, kahnClock, dfsClock); // show results on screen, whitout showing order.
-        // showResults(kahn, dfs, kahnClock, dfsClock, true); // uncomment if want to see results.
+        // showResults(kahn, dfs, kahnClock, dfsClock); // show results on screen, whitout showing order.
+        showResults(kahn, dfs, kahnClock, dfsClock, true); // uncomment if want to see results.
 
         //Saving data for further analysis
         //data << size << endl;  // size of run
