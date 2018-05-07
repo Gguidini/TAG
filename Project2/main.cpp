@@ -154,7 +154,7 @@ void header(){
     printf("################################################\n");
     printf("\n");
     cout << "                press ENTER to continue ... " << endl;
-    getchar();
+    getchar(); cout << "\n\n";
 }
 
 int main(){

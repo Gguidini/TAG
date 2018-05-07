@@ -1,0 +1,66 @@
+################################################
+#       Projeto 2 - TAG - Unb - 2018/1         #
+################################################
+#      Aluno: Vitor F Dullens - 16/0148260     #
+#   Aluno: Giovanni M Guidini - 16/0122660     #
+################################################
+#               Algorithms Used                #
+# 1) Kahn's Algorithm:                         #
+# Create topological sort from incoming edges  #
+# of nodes. O(V+E) + time to create list of    #
+# incoming edges (done when reading).          #
+#                                              #
+# 2) Topological Sort with DFS:                #
+# Modified DFS to generate topological sort by #
+# adding finished nodes in a stack. The stack, #
+# at the end of execution, is a valid          #
+# topological sort. O(V+E).  With that been    #
+# said this algorithm is more recommended for  #
+# this exercise, because in almost all the     #
+# situations it performs better.               #
+################################################
+
+                press ENTER to continue ... 
+
+
+Processando arquivo top_small.txt
++----------- TOPOLOGICAL SORT USING KAHN ---------------------
+CLOCK CICLES - 109
+TIME - 0.000109s
++----------- TOPOLOGICAL SORT USING DFS ----------------------
+CLOCK CICLES - 27
+TIME - 2.7e-05s
++-------------------------------------------
+
+
+Processando arquivo top_med.txt
++----------- TOPOLOGICAL SORT USING KAHN ---------------------
+CLOCK CICLES - 192
+TIME - 0.000192s
++----------- TOPOLOGICAL SORT USING DFS ----------------------
+CLOCK CICLES - 165
+TIME - 0.000165s
++-------------------------------------------
+
+
+Processando arquivo top_large.txt
++----------- TOPOLOGICAL SORT USING KAHN ---------------------
+CLOCK CICLES - 6621
+TIME - 0.006621s
++----------- TOPOLOGICAL SORT USING DFS ----------------------
+CLOCK CICLES - 4134
+TIME - 0.004134s
++-------------------------------------------
+
+
+Processando arquivo top_huge.txt
++----------- TOPOLOGICAL SORT USING KAHN ---------------------
+CLOCK CICLES - 38144
+TIME - 0.038144s
++----------- TOPOLOGICAL SORT USING DFS ----------------------
+CLOCK CICLES - 28357
+TIME - 0.028357s
++-------------------------------------------
+
+
+                press ENTER to continue ... 

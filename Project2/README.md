@@ -14,3 +14,5 @@
 # Notes
 
 - To show the ordered graph, uncomment ```showResults()``` in line 193.
+- It's possible to see a previews of the result in [out preview](out_preview/)
+- Our personal clocks data can be acessed in [personal clocks data](personal_clocks_data/)
