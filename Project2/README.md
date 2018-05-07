@@ -5,7 +5,7 @@
 # Requirements
 
 - Have ```g++``` installed;
-- Have ```gnuplot``` installed;
+- Have ```gnuplot``` installed.
 
 # Compile
 
@@ -13,6 +13,7 @@
 
 # Notes
 
-- To show the ordered graph, uncomment ```showResults()``` in line 193.
-- It's possible to see a previews of the result in [out preview](out_preview/)
-- Our personal clocks data can be acessed in [personal clocks data](personal_clocks_data/)
+- To show the ordered graph, uncomment ```showResults()``` in line 193;
+- It's possible to see a previews of the result in [out preview](out_preview/);
+- Our personal clocks data can be acessed in [personal clocks data](personal_clocks_data/);
+- The folder [top datasets](top_datasets/) has the graphs that were used.
