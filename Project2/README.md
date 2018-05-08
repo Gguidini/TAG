@@ -9,7 +9,10 @@
 
 # Compile
 
-```g++ -o main main.cpp```
+```g++ -std=c++11 -Wall -o main main.cpp```
+
+# Run
+```./main```
 
 # Notes
 

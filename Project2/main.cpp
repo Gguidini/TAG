@@ -129,7 +129,7 @@ void showResults(string kahnOrder, string dfsOrder, int kahnClock, int dfsClock,
         cout << "TIME - " << (double) dfsClock/CLOCKS_PER_SEC << "s"<< endl;
         cout << "+-------------------------------------------" << "\n\n\n";
 }
-// TODO: Dullens, add sua matricula, por favor.
+// Show intro
 void header(){
     printf("################################################\n");
     printf("#       Projeto 2 - TAG - Unb - 2018/1         #\n");
@@ -162,9 +162,9 @@ int main(){
     // save execution times to create comprehensive study
     // ofstream data;
     // data.open("data.txt", ios::app);
-    vector<double> timesIncidenceSort(4);
-    vector<double> timesDFSSort(4);
-    vector<double> sizes(4);
+    vector<double> timesIncidenceSort;
+    vector<double> timesDFSSort;
+    vector<double> sizes;
     // the 4 graphs
     vector<string> files = {"top_small.txt", "top_med.txt", "top_large.txt", "top_huge.txt"};
     // execute main loop for all graphs
@@ -190,7 +190,7 @@ int main(){
         int dfsClock = t1-t0;
         
         // showResults(kahn, dfs, kahnClock, dfsClock); // show results on screen, whitout showing order.
-        showResults(kahn, dfs, kahnClock, dfsClock, true); // uncomment if want to see results.
+        showResults(kahn, dfs, kahnClock, dfsClock, true); // comment if want to see results without ordering
 
         //Saving data for further analysis
         //data << size << endl;  // size of run
@@ -198,6 +198,17 @@ int main(){
         //data << "DFS: " << dfsClock << endl;
     }
     // data.close();
+    // quick summary of results
+    int k = 0, d = 0;
+    for(int i = 0; i < 4; i++){
+        if(timesDFSSort[i] < timesIncidenceSort[i])
+            d++;
+        else
+            k++;
+    }
+    cout << "Summary:\n";
+    cout << "DFS Sort was faster in " << d << " test cases\n";
+    cout << "Khan's Sort was faster or equal to DFS in " << k << " test cases\n";
     gnuPlot(timesIncidenceSort, timesDFSSort, sizes);
 }
 
