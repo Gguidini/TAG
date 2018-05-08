@@ -5,7 +5,8 @@
 # Requirements
 
 - Have ```g++``` installed;
-- Have ```gnuplot``` installed.
+- Have ```gnuplot``` installed;
+- Have ```make``` installed(opcional).
 
 # Compile
 
@@ -14,9 +15,13 @@
 # Run
 ```./main```
 
+# Compile and Run
+```make all``` 
+
+
 # Notes
 
-- To show a small result, comment ```showResults()``` in line 193 and uncomment ```showResult()``` in line 192;
+- To show a small result, comment ```showResults()``` in line 193 and uncomment ```showResults()``` in line 192;
 - It's possible to see a previews of the result in [out preview](out_preview/);
 - Our personal clocks data can be acessed in [personal clocks data](personal_clocks_data/);
 - The folder [top datasets](top_datasets/) has the graphs that were used.

@@ -1,2 +1,2 @@
 all: main.cpp
-	g++ -std=c++11 -o main main.cpp && ./main
+	g++ -std=c++11 -Wall -o main main.cpp && ./main
