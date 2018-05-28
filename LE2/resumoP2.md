@@ -36,22 +36,20 @@ Como é possivel ver na imagem acima, se o vertice em vermelho for retirado, nã
 
 **Requisitos:** grafos bipartidos não possuem [ciclos impares](https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/bipartite.html).
 
-### quase-codigo
+### Código para identificar se um grafo é bipartido ou não
 
 ```C++
-bipartido = true;
-grafo G;
-bool color[];
-memset(color, -1, sizeof(color))
-dfs(int v, bool cor){
-    color[v] = cor; //colore o verice = foi visitado
-    for (i in G){
-        if (G[v][i] == 1){
-            if (color[i] == cor) bipartido = false;
-            if(color[i] == -1) dfs(i, !cor);
-         }
+bool bipartite(int u){
+    int ans = 1;
+    for(auto v : grafo[u]){
+        if(color[v] == -1){
+            color[v] = !color[u];
+            ans &= bipartite(v);
+        }
+        else
+            ans &= !(color[v] == color[u]);
     }
-
+    return ans;
 }
 ```
 
@@ -80,6 +78,8 @@ Em negrito é um exemplo de emparelhamento.
 
 **Emparelhamento Maximo:** um emparelhamento que satura o maior número possivel de vertices num grafo.
 
+**Emparelhamento Maximal:** um emparelhamento que não pode ser expandido, mas não é necessariamente o maior emparelhamento.
+![](maximalVSmaximo.png)
 **Emparelhamento Estavel:** em um grafo que cada um dos conjuntos possuem prioridades, o emparelhamento estável é aquele que melhor escolhe as combinações. Podendo ser ótimo pra um conjunto ou para o outro.
 
 ### observação
