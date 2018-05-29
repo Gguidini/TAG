@@ -12,7 +12,7 @@
 ### exemplo
 ![exemplo](http://danielamaral.wikidot.com/local--files/agmmo/GrafoPesosAGM.png)
 
-Em verde a árvore gerado minima.
+*em verde a árvore gerado minima.*
 
 ## Cortes e Blocos
 
@@ -92,7 +92,7 @@ Conjunto de arestas que não compartilham nenhum vertice terminal.
 
 ![exemplo](http://www.professeurs.polymtl.ca/michel.gagnon/Disciplinas/Bac/Grafos/Map/map_aum3.gif)
 
-Em negrito é um exemplo de emparelhamento.
+*em negrito é um exemplo de emparelhamento.*
 
 **Emparelhamento Perfeito:** é um emparelhamento que satura todos os vertices do grafo.
 
@@ -113,7 +113,14 @@ Em negrito é um exemplo de emparelhamento.
 ``` 
 Algoritmo de Gale-Shapley
 1 inicializa cada pessoa como livre
-    
+2 while Existe(isFree(m) and m não propos para todas as mulheres):
+    i   m = man
+    ii  w = primera mulher na lista m que nao foi proposta
+    iii if isFree(w): m e w são unidos
+    iv  else if w prefere m que seu atual marido m':
+           a m e w são unidos
+           b m' é liberado
+    v   else m é rejeitado por w
 ```
 
 ### observação
