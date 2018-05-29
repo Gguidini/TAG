@@ -77,10 +77,24 @@ Em negrito é um exemplo de emparelhamento.
 **Emparelhamento Perfeito:** é um emparelhamento que satura todos os vertices do grafo.
 
 **Emparelhamento Maximo:** um emparelhamento que satura o maior número possivel de vertices num grafo.
+```
+1 começar com um emparelhamento qualquer
+2 se M satura todos os vertices de X, fim!
+3 se nao:
+    i   escolher u em X não-saturado
+    ii  procurar um caminho M-aumentado com origem em u
+    iii se achou, inverter arestas formando emparelhamento em u', voltar ao passo 2
+    iv  se não, fim!
+```
 
 **Emparelhamento Maximal:** um emparelhamento que não pode ser expandido, mas não é necessariamente o maior emparelhamento.
 ![](maximalVSmaximo.png)
 **Emparelhamento Estavel:** em um grafo que cada um dos conjuntos possuem prioridades, o emparelhamento estável é aquele que melhor escolhe as combinações. Podendo ser ótimo pra um conjunto ou para o outro.
+``` 
+Algoritmo de Gale-Shapley
+1 inicializa cada pessoa como livre
+    
+```
 
 ### observação
 
@@ -91,6 +105,21 @@ Em negrito é um exemplo de emparelhamento.
 **Objetivo:** Minimizar o custo atravéz de operações de soma e subtração de uma matriz.
 
 **exemplo:** [video aula](https://www.youtube.com/watch?v=sZQwhs_uDCs)
+
+**Algoritmo**
+```
+Matriz(n x n)
+1 de cada linha, subtrair o menor elemento
+2 de cada coluna, subtrair o menor elemento
+3 encontrar conjunto maximo de N' zeros independentes (nao compartilham a mesma linha nem coluna)
+4 se N'= n retornar índices dos zeros
+5 se não:
+    i   cobrir todos os zeros com N' linhas ou colunas
+    ii  encontrar valor mínimo não coberto (k)
+    iii subrair k dos elementos não cobertos
+    iv  somarar k dos elementos duplamente cobertos
+    v   voltar para o passo 3
+```
 
 ### notas
 Por favor, complementem com o que acharem necessário :+1:
