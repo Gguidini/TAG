@@ -11,6 +11,7 @@
 **Custo:** O(n²) - pode haver variações.
 ### exemplo
 ![exemplo](http://danielamaral.wikidot.com/local--files/agmmo/GrafoPesosAGM.png)
+
 Em verde a árvore gerado minima.
 
 ## Cortes e Blocos
@@ -36,7 +37,7 @@ Como é possivel ver na imagem acima, se o vertice em vermelho for retirado, nã
 
 **Requisitos:** grafos bipartidos não possuem [ciclos impares](https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/bipartite.html).
 
-### Código para identificar se um grafo é bipartido ou não
+### código para identificar se um grafo é bipartido ou não
 
 ```C++
 bool bipartite(int u){
@@ -50,6 +51,24 @@ bool bipartite(int u){
             ans &= !(color[v] == color[u]);
     }
     return ans;
+}
+```
+
+### outra opção de codigo
+```C++
+bipartido = true;
+grafo G;
+bool color[];
+memset(color, -1, sizeof(color))
+dfs(int v, bool cor){
+    color[v] = cor; //colore o verice = foi visitado
+    for (i in G){
+        if (G[v][i] == 1){
+            if (color[i] == cor) bipartido = false;
+            if(color[i] == -1) dfs(i, !cor);
+         }
+    }
+
 }
 ```
 
@@ -72,6 +91,7 @@ Conjunto de arestas que não compartilham nenhum vertice terminal.
 **exemplo**
 
 ![exemplo](http://www.professeurs.polymtl.ca/michel.gagnon/Disciplinas/Bac/Grafos/Map/map_aum3.gif)
+
 Em negrito é um exemplo de emparelhamento.
 
 **Emparelhamento Perfeito:** é um emparelhamento que satura todos os vertices do grafo.
