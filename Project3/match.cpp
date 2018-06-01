@@ -147,7 +147,7 @@ void matchOptimalForSchools(){
         }
         // in case no suitable professor was found, look for professors with habilitations < desired
         if(!matchDone){
-            cout << "Going for the leftovers with " << curr << endl;
+            // cout << "Going for the leftovers with " << curr << endl; // DEBUG
             int it = 0;
             while(it < idx){
                 if(!curr->tried(p[it]->getCode())){
@@ -158,7 +158,7 @@ void matchOptimalForSchools(){
                             Q.push(p[it]->getMatch()); // returns previously match to queue
                             isInQueue[p[it]->getMatch()->getCode()] = true;
                         }
-                        cout << "Matching " << curr << " to leftover " << p[it] << endl;
+                        // cout << "Matching " << curr << " to leftover " << p[it] << endl; // DEBUG
                         matchMaker(p[it], curr);
                         if(curr->isFree() != -1){
                             Q.push(curr);
@@ -175,7 +175,27 @@ void matchOptimalForSchools(){
     }
 }
 
+void hello(){
+    printf("################################################\n");
+    printf("#       Projeto 2 - TAG - Unb - 2018/1         #\n");
+    printf("################################################\n");
+    printf("#      Aluno: Vitor F Dullens - 16/0148260     #\n");
+    printf("#   Aluno: Giovanni M Guidini - 16/0122660     #\n");
+    printf("################################################\n");
+    printf("#               Algorithms Used                #\n");
+    printf("# 1) Gale-Shapley Algoritm                     #\n");
+    printf("#    The algorithm solves the stable marriage  #\n");
+    printf("# problem. In this case, matching schools to   #\n");
+    printf("# professors. The implemented version is       #\n");
+    printf("# optimal for schools.                         #\n");                       
+    printf("################################################\n");
+    printf("\n");
+    printf("\n");
+    printf("Press ENTER to continue...\n\n\n");
+    getchar();
+}
 int main(){
+    hello();
     string file = "entradaProj3TAG.txt";
     // populate graph
     Parser::readFile(file);

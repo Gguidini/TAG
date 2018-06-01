@@ -1,7 +1,12 @@
 #include <bits/stdc++.h>
 #include "dataDef.hpp"
+# define ESC 0x1b
 
 using namespace std;
+
+char GREEN[] = { ESC, '[', '1', ';', '3', '2', 'm', 0 };
+char YELLOW[] = { ESC, '[', '1', ';', '3', '3', 'm', 0 };
+char NORMAL[] = { ESC, '[', '0', ';', '3', '9', 'm', 0 };
 
 namespace Parser {
     // regex for reading file
@@ -26,7 +31,7 @@ namespace Parser {
             cout << "File " << fileName << " not found. Did you add extension?\n";
             exit(1);
         }
-        cout << "=> Reading file...";
+        cout << GREEN << "==>" << NORMAL << " Reading file...";
         string line;
         std::smatch sm; // store capturing groups
         while(getline(fd, line)){
@@ -51,20 +56,20 @@ namespace Parser {
                 escolas.push_back(e);
             }
         }
-        cout << "Done.\n";
-        cout << "[ " << profs.size() << " ] Professores\n";
-        cout << "[ " << escolas.size() << " ] Escolas\n";
+        cout <<"Done.\n";
+        cout << "[ " << GREEN << profs.size() << NORMAL << " ] Professores\n";
+        cout << "[ " << GREEN << escolas.size() << NORMAL << " ] Escolas\n";
     } 
 
     void checkRead(){
-        cout << "Professores:\n";
+        cout << YELLOW << "Professores:\n" << NORMAL;
 
         vector<Professor*> p = getTeachers();
         for(auto v : p){
             cout << v << endl;
         }
 
-        cout << "Escolas:\n";
+        cout << YELLOW << "Escolas:\n" << NORMAL;
         vector<Escola*> e = getSchools();
         for(auto v: e){
             cout << v << endl;
