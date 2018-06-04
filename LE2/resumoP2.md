@@ -16,6 +16,7 @@
 *em verde a árvore gerado minima.*
 
 #### Algoritmo de Prim - Pseudocódigo
+```
 def prim(Graph G,vertex s):
 1. conjunto mst = &empty;
 2. para todo vértice v &isin; V: w(v) = INF
@@ -27,14 +28,17 @@ def prim(Graph G,vertex s):
         1. if(w(e.target) > w(e.cost) && e.target &notin; mst): 
             1. w(e.target) = e.cost
             2. parent[e.target] = v
+```
 
 #### Algoritmo de Kruskal - Pseudocódigo
+```
 def kruskal(Graph G):
 1. Ordenar todas as arestas de G em ordem crescente
 2. E = &empty;. E é o conjunto de arestas.
 3. enquanto |E| < |V|-1:
     1. e = aresta de menor valor ainda não vista
     2. if (E&cup;{e} não forma ciclos): E&cup;{e}
+```
 
 ### Problema da Árvore Geradora Mínima Euclidiana
 Dado N pontos no espaço cartesiano, a árvora geradora mínima euclidiana desses pontos é aquela que liga todos os pontos de tal forma que a soma do tamanho das arestas seja a menor possível. Para calcular a árvore geradora mínima euclidiana em tempo O(n logn) é necessário executar o algoritmo de triangulação de Delaunay (com custo O(n logn)) e depois o algoritmo de árvore geradora mínima com custo O(n logn).
@@ -54,6 +58,7 @@ Um grafo conexo onde não é possível fazer cortes.
 Como é possivel ver na imagem acima, se o vertice em vermelho for retirado, não existe mais vertice de Corte, com isso é um Bloco.
 
 #### Algoritmo para Encontrar Blocos - Pseudocódigo 
+```
 def Blocks(vértice i, tempo d):
 1. visited[i] = True
 2. time[i] = d
@@ -71,6 +76,8 @@ def Blocks(vértice i, tempo d):
             3. low[i] = min(low[i], low[n<sub>i</sub>])
     2. else if n<sub>i</sub> &ne; parent[i]:
         1. low[i] = min(low[i], time[n<sub>i</sub>])
+```
+
 ## Grafos Bipartidos
 
 É um tipo de grafo onde é possivel dividir os vértices em dois conjuntos distindos, ou seja, que não possuem arestas que ligam elementos do mesmo conjunto.
