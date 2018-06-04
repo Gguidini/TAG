@@ -16,7 +16,7 @@
 *em verde a árvore gerado minima.*
 
 #### Algoritmo de Prim - Pseudocódigo
-```python
+```
 def prim(Graph G,vertex s):
 1. conjunto mst = &empty;
 2. para todo vértice v &isin; V: w(v) = INF
@@ -31,7 +31,7 @@ def prim(Graph G,vertex s):
 ```
 
 #### Algoritmo de Kruskal - Pseudocódigo
-```python
+```
 def kruskal(Graph G):
 1. Ordenar todas as arestas de G em ordem crescente
 2. E = &empty;. E é o conjunto de arestas.
@@ -58,7 +58,7 @@ Um grafo conexo onde não é possível fazer cortes.
 Como é possivel ver na imagem acima, se o vertice em vermelho for retirado, não existe mais vertice de Corte, com isso é um Bloco.
 
 #### Algoritmo para Encontrar Blocos - Pseudocódigo 
-```python
+```
 def Blocks(vértice i, tempo d):
 1. visited[i] = True
 2. time[i] = d
