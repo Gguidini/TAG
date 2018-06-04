@@ -20,15 +20,18 @@
 ```
 def prim(Graph G,vertex s):
 1. conjunto mst = &empty;
-2. para todo vértice v &isin; V: w(v) = INF
-3. w(s) = 0
-4. enquanto | mst | < | V |:
-    1. selecionar vértice com menor peso, v
-    2. adicionar v à mst
-    3. para toda aresta e &isin; adj[v]:
-        1. if(w(e.target) > w(e.cost) && e.target &notin; mst): 
-            1. w(e.target) = e.cost
-            2. parent[e.target] = v
+2. conjunto peso w[|G|]
+2.1 para todo vértice v : w[v] = INF
+3. conjunto de parentes // para conseguir printar a MST
+4. w[s] = 0
+5. parent[s] = -1 // Ele nao possui pai 
+6. enquanto | mst | < | V |:
+    1. selecionar vértice com menor peso e que nao está no conjunto mst, v
+    2. mst.insert(v) // adicionar v à mst
+    3. para todo vertice u que sai de v:
+        1. if(aresta e(u,v) < w[u] && u not in mst): 
+            1. w[u] = e
+            2. parent[u] = v
 ```
 
 #### Algoritmo de Kruskal - Pseudocódigo
@@ -36,8 +39,8 @@ def prim(Graph G,vertex s):
 def kruskal(Graph G):
 1. Ordenar todas as arestas de G em ordem crescente
 2. E = &empty;. E é o conjunto de arestas.
-3. enquanto |E| < |V|-1:
-    1. e = aresta de menor valor ainda não vista
+3. enquanto |E| < |V|-1:  // MST = Minimum Spanning Tree, ou seja, uma árvore, e toda árvore possui v vértices e v-1 arestas
+    1. e = aresta de menor valor ainda não vistada
     2. if (E&cup;{e} não forma ciclos): E&cup;{e}
 ```
 
