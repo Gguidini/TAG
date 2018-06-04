@@ -22,7 +22,7 @@ def prim(Graph G,vertex s):
 1. conjunto mst = &empty;
 2. conjunto peso w[|G|]
 2.1 para todo vértice v : w[v] = INF
-3. conjunto de parentes // para conseguir printar a MST
+3. conjunto de parentes parent[|G|] // para conseguir printar a MST
 4. w[s] = 0
 5. parent[s] = -1 // Ele nao possui pai 
 6. enquanto | mst | < | V |:
@@ -39,7 +39,7 @@ def prim(Graph G,vertex s):
 def kruskal(Graph G):
 1. Ordenar todas as arestas de G em ordem crescente
 2. E = &empty;. E é o conjunto de arestas.
-3. enquanto |E| < |V|-1:  // MST = Minimum Spanning Tree, ou seja, uma árvore, e toda árvore possui v vértices e v-1 arestas
+3. enquanto |E| < |V|-1:  // MST = Minimum Spanning Tree, ou seja, uma árvore e toda árvore possui v vértices e v-1 arestas
     1. e = aresta de menor valor ainda não vistada
     2. if (E&cup;{e} não forma ciclos): E&cup;{e}
 ```
