@@ -60,15 +60,16 @@ def Blocks(vértice i, tempo d):
 3. low[i] = d
 4. childCount = 0
 5. isArticulation = False
-6. foreach n<sub>i</sub> &isin; adj[i] not visited yet:   
-    1. parent[n<sub>i</sub>] = i
-    2. Blocks(n<sub>i</sub>, d+1) // RECURSIVE
-    3. childCount++
-    4. if low[n<sub>i</sub>] &ge; low[i]:
-        1. isArticulation = True
-        2. backtrack from i. all vertices v such that low[v] = low[i] are in i's block.
-        3. low[i] = min(low[i], low[n<sub>i</sub>])
-    5. else if n<sub>i</sub> &ne; parent[i]:
+6. foreach n<sub>i</sub> &isin; adj[i]:   
+    1. if not visited[n<sub>i</sub>]:
+        1. parent[n<sub>i</sub>] = i
+        2. Blocks(n<sub>i</sub>, d+1) // RECURSIVE
+        3. childCount++
+        4. if low[n<sub>i</sub>] &ge; low[i]:
+            1. isArticulation = True
+            2. backtrack from i. all vertices v such that low[v] = low[i] are in i's block.
+            3. low[i] = min(low[i], low[n<sub>i</sub>])
+    2. else if n<sub>i</sub> &ne; parent[i]:
         1. low[i] = min(low[i], time[n<sub>i</sub>])
 ## Grafos Bipartidos
 
