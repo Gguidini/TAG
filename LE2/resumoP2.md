@@ -16,7 +16,7 @@
 *em verde a árvore gerado minima.*
 
 #### Algoritmo de Prim - Pseudocódigo
-```
+```python
 def prim(Graph G,vertex s):
 1. conjunto mst = &empty;
 2. para todo vértice v &isin; V: w(v) = INF
@@ -31,7 +31,7 @@ def prim(Graph G,vertex s):
 ```
 
 #### Algoritmo de Kruskal - Pseudocódigo
-```
+```python
 def kruskal(Graph G):
 1. Ordenar todas as arestas de G em ordem crescente
 2. E = &empty;. E é o conjunto de arestas.
@@ -58,7 +58,7 @@ Um grafo conexo onde não é possível fazer cortes.
 Como é possivel ver na imagem acima, se o vertice em vermelho for retirado, não existe mais vertice de Corte, com isso é um Bloco.
 
 #### Algoritmo para Encontrar Blocos - Pseudocódigo 
-```
+```python
 def Blocks(vértice i, tempo d):
 1. visited[i] = True
 2. time[i] = d
@@ -147,13 +147,13 @@ Conjunto de arestas que não compartilham nenhum vertice terminal.
 
 **Emparelhamento Maximo:** um emparelhamento que satura o maior número possivel de vertices num grafo.
 ```
-1 começar com um emparelhamento qualquer
-2 se M satura todos os vertices de X, fim!
-3 se nao:
-    i   escolher u em X não-saturado
-    ii  procurar um caminho M-aumentado com origem em u
-    iii se achou, inverter arestas formando emparelhamento em u', voltar ao passo 2
-    iv  se não, fim!
+1. começar com um emparelhamento qualquer
+2. se M satura todos os vertices de X, fim!
+3. se nao:
+    1. escolher u em X não-saturado
+    2. procurar um caminho M-aumentado com origem em u
+    3. se achou, inverter arestas formando emparelhamento em u', voltar ao passo 2
+    4. se não, fim!
 ```
 
 **Emparelhamento Maximal:** um emparelhamento que não pode ser expandido, mas não é necessariamente o maior emparelhamento.
@@ -161,15 +161,15 @@ Conjunto de arestas que não compartilham nenhum vertice terminal.
 **Emparelhamento Estavel:** em um grafo que cada um dos conjuntos possuem prioridades, o emparelhamento estável é aquele que melhor escolhe as combinações. Podendo ser ótimo pra um conjunto ou para o outro.
 ``` 
 Algoritmo de Gale-Shapley
-1 inicializa cada pessoa como livre
-2 while Existe(isFree(m) and m não propos para todas as mulheres):
-    i   m = man
-    ii  w = primera mulher na lista m que nao foi proposta
-    iii if isFree(w): m e w são unidos
-    iv  else if w prefere m que seu atual marido m':
-           a m e w são unidos
-           b m' é liberado
-    v   else m é rejeitado por w
+1. inicializa cada pessoa como livre
+2. while Existe(isFree(m) and m não propos para todas as mulheres):
+    1. m = man
+    2. w = primera mulher na lista m que nao foi proposta
+    3. if isFree(w): m e w são unidos
+    4. else if w prefere m que seu atual marido m':
+           1. m e w são unidos
+           2. m' é liberado
+    5. else m é rejeitado por w
 ```
 
 ### observação
@@ -185,22 +185,22 @@ Algoritmo de Gale-Shapley
 **Algoritmo**
 ```
 Matriz(n x n)
-1 de cada linha, subtrair o menor elemento
-2 de cada coluna, subtrair o menor elemento
-3 encontrar conjunto maximo de N' zeros independentes (nao compartilham a mesma linha nem coluna)
-4 se N'= n retornar índices dos zeros
-5 se não:
-    i   cobrir todos os zeros com N' linhas ou colunas
-    ii  encontrar valor mínimo não coberto (k)
-    iii subrair k dos elementos não cobertos
-    iv  somarar k dos elementos duplamente cobertos
-    v   voltar para o passo 3
+1. de cada linha, subtrair o menor elemento
+2. de cada coluna, subtrair o menor elemento
+3. encontrar conjunto maximo de N' zeros independentes (nao compartilham a mesma linha nem coluna)
+4. se N'= n retornar índices dos zeros
+5. se não:
+    1. cobrir todos os zeros com N' linhas ou colunas
+    2. encontrar valor mínimo não coberto (k)
+    3. subrair k dos elementos não cobertos
+    4. somarar k dos elementos duplamente cobertos
+    5. voltar para o passo 3
 ```
 ## Algoritmo do Leilão
 
 Um algoritmo relacionado ao algoritmo húngaro é o algoritmo do leilão. Ele também procura maximizar/minimizar um emparelhamento com pesos. Suponha que tenhamos `j` bens e `i` compradores, e que `w[i][j]` representa o preço dado por i ao bem j.
 
-```
+```python
 foreach good j:
     p[j] = 0
     owner[j] = NULL
