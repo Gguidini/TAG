@@ -9,11 +9,35 @@
 **Algoritmos:** [Prim](https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/prim.html) ou [Kruskal](https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/kruskal.html).
 
 **Custo:** O(n²) - pode haver variações.
+**Obs:** Existe um algoritmo que calcula a MST com complexidade O(n logn )
 ### exemplo
 ![exemplo](http://danielamaral.wikidot.com/local--files/agmmo/GrafoPesosAGM.png)
 
 *em verde a árvore gerado minima.*
 
+#### Algoritmo de Prim - Pseudocódigo
+def prim(Graph G,vertex s):
+1. conjunto mst = &empty;
+2. para todo vértice v &isin; V: w(v) = INF
+3. w(s) = 0
+4. enquanto | mst | < | V |:
+    1. selecionar vértice com menor peso, v
+    2. adicionar v à mst
+    3. para toda aresta e &isin; adj[v]:
+        1. if(w(e.target) > w(e.cost) && e.target &notin; mst): 
+            1. w(e.target) = e.cost
+            2. parent[e.target] = v
+
+#### Algoritmo de Kruskal - Pseudocódigo
+def kruskal(Graph G):
+1. Ordenar todas as arestas de G em ordem crescente
+2. E = &empty;. E é o conjunto de arestas.
+3. enquanto |E| < |V|-1:
+    1. e = aresta de menor valor ainda não vista
+    2. if (E&cup;{e} não forma ciclos): E&cup;{e}
+
+### Problema da Árvore Geradora Mínima Euclidiana
+Dado N pontos no espaço cartesiano, a árvora geradora mínima euclidiana desses pontos é aquela que liga todos os pontos de tal forma que a soma do tamanho das arestas seja a menor possível. Para calcular a árvore geradora mínima euclidiana em tempo O(n logn) é necessário executar o algoritmo de triangulação de Delaunay (com custo O(n logn)) e depois o algoritmo de árvore geradora mínima com custo O(n logn).
 ## Cortes e Blocos
 
 ### Cortes
@@ -29,6 +53,23 @@ Um grafo conexo onde não é possível fazer cortes.
 
 Como é possivel ver na imagem acima, se o vertice em vermelho for retirado, não existe mais vertice de Corte, com isso é um Bloco.
 
+#### Algoritmo para Encontrar Blocos - Pseudocódigo 
+def Blocks(vértice i, tempo d):
+1. visited[i] = True
+2. time[i] = d
+3. low[i] = d
+4. childCount = 0
+5. isArticulation = False
+6. foreach n<sub>i</sub> &isin; adj[i] not visited yet:   
+    1. parent[n<sub>i</sub>] = i
+    2. Blocks(n<sub>i</sub>, d+1) // RECURSIVE
+    3. childCount++
+    4. if low[n<sub>i</sub>] &ge; low[i]:
+        1. isArticulation = True
+        2. backtrack from i. all vertices v such that low[v] = low[i] are in i's block.
+        3. low[i] = min(low[i], low[n<sub>i</sub>])
+    5. else if n<sub>i</sub> &ne; parent[i]:
+        1. low[i] = min(low[i], time[n<sub>i</sub>])
 ## Grafos Bipartidos
 
 É um tipo de grafo onde é possivel dividir os vértices em dois conjuntos distindos, ou seja, que não possuem arestas que ligam elementos do mesmo conjunto.
@@ -147,6 +188,25 @@ Matriz(n x n)
     iv  somarar k dos elementos duplamente cobertos
     v   voltar para o passo 3
 ```
+## Algoritmo do Leilão
 
-### notas
+Um algoritmo relacionado ao algoritmo húngaro é o algoritmo do leilão. Ele também procura maximizar/minimizar um emparelhamento com pesos. Suponha que tenhamos `j` bens e `i` compradores, e que `w[i][j]` representa o preço dado por i ao bem j.
+
+```
+foreach good j:
+    p[j] = 0
+    owner[j] = NULL
+queue Q starts with all bidders
+up = 1/(j+1)
+while not Q.empty():
+    i = Q.front()
+    find j that maximizes w[i][j] - p[j]
+    if w[i][j] - p[j] >= 0:
+        if owner[j] != NULL:
+            Q.push(owner[j])
+        owner[j] = i
+        p[j] += up
+
+```
+### Notas
 Por favor, complementem com o que acharem necessário :+1:
