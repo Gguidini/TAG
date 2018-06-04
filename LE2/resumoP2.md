@@ -8,8 +8,9 @@
 
 **Algoritmos:** [Prim](https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/prim.html) ou [Kruskal](https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/kruskal.html).
 
-**Custo:** O(n²) - pode haver variações.
-**Obs:** Existe um algoritmo que calcula a MST com complexidade O(n logn )
+**Custo:** O(log v + log e) - pode haver variações.
+
+**Obs:** Custo O(n²) se for matriz
 ### exemplo
 ![exemplo](http://danielamaral.wikidot.com/local--files/agmmo/GrafoPesosAGM.png)
 
