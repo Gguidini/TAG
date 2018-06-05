@@ -64,7 +64,7 @@ Um grafo conexo onde não é possível fazer cortes.
 Como é possivel ver na imagem acima, se o vertice em vermelho for retirado, não existe mais vertice de Corte, com isso é um Bloco.
 
 #### Algoritmo para Encontrar Blocos - Pseudocódigo 
-```
+
 def Blocks(vértice i, tempo d):
 1. visited[i] = True
 2. time[i] = d
@@ -82,7 +82,6 @@ def Blocks(vértice i, tempo d):
             3. low[i] = min(low[i], low[n<sub>i</sub>])
     2. else if n<sub>i</sub> &ne; parent[i]:
         1. low[i] = min(low[i], time[n<sub>i</sub>])
-```
 
 ## Grafos Bipartidos
 
