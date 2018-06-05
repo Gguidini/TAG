@@ -43,6 +43,8 @@ def kruskal(Graph G):
     1. e = aresta de menor valor ainda não vistada
     2. if (Inserção da ares e não forma ciclos): E.insert(e)
 ```
+#### Algoritmo de Kruskal - Visualização
+![gif](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/MST_kruskal_en.gif/255px-MST_kruskal_en.gif)
 
 ### Problema da Árvore Geradora Mínima Euclidiana
 Dado N pontos no espaço cartesiano, a árvora geradora mínima euclidiana desses pontos é aquela que liga todos os pontos de tal forma que a soma do tamanho das arestas seja a menor possível. Para calcular a árvore geradora mínima euclidiana em tempo O(n logn) é necessário executar o algoritmo de triangulação de Delaunay (com custo O(n logn)) e depois o algoritmo de árvore geradora mínima com custo O(n logn).
