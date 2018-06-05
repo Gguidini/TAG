@@ -38,10 +38,10 @@ def prim(Graph G,vertex s):
 ```
 def kruskal(Graph G):
 1. Ordenar todas as arestas de G em ordem crescente
-2. E = &empty;. E é o conjunto de arestas.
+2. E = vazio. E é o conjunto de arestas.
 3. enquanto |E| < |V|-1:  // MST = Minimum Spanning Tree, ou seja, uma árvore e toda árvore possui v vértices e v-1 arestas
     1. e = aresta de menor valor ainda não vistada
-    2. if (E&cup;{e} não forma ciclos): E&cup;{e}
+    2. if (Inserção da ares e não forma ciclos): E.insert(e)
 ```
 
 ### Problema da Árvore Geradora Mínima Euclidiana
